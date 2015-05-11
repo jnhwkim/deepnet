@@ -5,6 +5,7 @@ from dbn import *
 from sparse_coder import *
 from choose_matrix_library import *
 import numpy as np
+import os
 from time import sleep
 
 def LockGPU(max_retries=10):
@@ -13,6 +14,8 @@ def LockGPU(max_retries=10):
     if board != -1:
       break
     sleep(1)
+  if os.uname()[0] == 'Darwin':
+    board = 0 # In OSX, it will skip lock mechanism ..
   if board == -1:
     print 'No GPU board available.'
     sys.exit(1)
