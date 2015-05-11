@@ -406,7 +406,7 @@ class NeuralNet(object):
 
   def ScoreOneLabel(self, preds, targets):
     """Computes Average precision and precision at 50."""
-    targets_sorted = targets[(-preds.T).argsort().flatten(),:]
+    targets_sorted = targets[(-preds.T).argsort().flatten()]
     cumsum = targets_sorted.cumsum()
     prec = cumsum / np.arange(1.0, 1 + targets.shape[0])
     total_pos = float(sum(targets))
